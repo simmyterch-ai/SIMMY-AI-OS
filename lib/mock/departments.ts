@@ -1,0 +1,88 @@
+import type { Department } from "../types/department";
+
+export const departments: Department[] = [
+  {
+    id: 1,
+    departmentId: "DEP-001",
+    name: "Management",
+    manager: "Simeon Dzuamo",
+    employeeCount: 6,
+    location: "Casablanca, Morocco",
+    description:
+      "Executive leadership and strategic planning.",
+    status: "Active",
+    organizationId: null,
+    createdAt: "2026-07-27T00:00:00.000Z",
+    updatedAt: "2026-07-27T00:00:00.000Z",
+  },
+  {
+    id: 2,
+    departmentId: "DEP-002",
+    name: "Human Resources",
+    manager: "Grace Mensah",
+    employeeCount: 4,
+    location: "Accra, Ghana",
+    description:
+      "Recruitment, onboarding and employee relations.",
+    status: "Active",
+    organizationId: null,
+    createdAt: "2026-07-18T00:00:00.000Z",
+    updatedAt: "2026-07-18T00:00:00.000Z",
+  },
+  {
+    id: 3,
+    departmentId: "DEP-003",
+    name: "Finance",
+    manager: "Aisha Bello",
+    employeeCount: 5,
+    location: "Abuja, Nigeria",
+    description:
+      "Financial planning, accounting and reporting.",
+    status: "Active",
+    organizationId: null,
+    createdAt: "2026-07-15T00:00:00.000Z",
+    updatedAt: "2026-07-15T00:00:00.000Z",
+  },
+  {
+    id: 4,
+    departmentId: "DEP-004",
+    name: "Information Technology",
+    manager: "Michael Johnson",
+    employeeCount: 8,
+    location: "Johannesburg, South Africa",
+    description:
+      "Infrastructure, software development and security.",
+    status: "Active",
+    organizationId: null,
+    createdAt: "2026-07-20T00:00:00.000Z",
+    updatedAt: "2026-07-20T00:00:00.000Z",
+  },
+  {
+    id: 5,
+    departmentId: "DEP-005",
+    name: "Sales",
+    manager: "Daniel Okoro",
+    employeeCount: 7,
+    location: "Lagos, Nigeria",
+    description:
+      "Business development and customer acquisition.",
+    status: "Active",
+    organizationId: null,
+    createdAt: "2026-07-12T00:00:00.000Z",
+    updatedAt: "2026-07-12T00:00:00.000Z",
+  },
+  {
+    id: 6,
+    departmentId: "DEP-006",
+    name: "Marketing",
+    manager: "Sarah Ndlovu",
+    employeeCount: 3,
+    location: "Harare, Zimbabwe",
+    description:
+      "Brand management and digital marketing.",
+    status: "Inactive",
+    organizationId: null,
+    createdAt: "2026-07-10T00:00:00.000Z",
+    updatedAt: "2026-07-10T00:00:00.000Z",
+  },
+];

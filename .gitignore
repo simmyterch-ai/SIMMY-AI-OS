@@ -1,0 +1,89 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files — NEVER commit secrets
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# generated Prisma client
+/lib/generated/prisma
+
+# AI editor folders
+.agents/
+.claude/
+.windsurf/
+
+# Local backups
+*.backup
+*.bak
+*-backup.tsx
+*-backup.ts
+
+# Local development test scripts
+test-*.ts
+delete-test-*.ts
+
+# Local test files
+public/test-upload.html
+# AI editor files
+.agents/
+.claude/
+.windsurf/
+
+# Backup files
+*.backup
+*.bak
+*-backup.tsx
+*-backup.ts
+
+# Local test files
+test-*.ts
+delete-test-*.ts
+
+# Local test pages
+public/test-*.html
+# Local test scripts
+test-*.ts
+delete-test-*.ts
+
+# Backup files
+*.backup
+*.bak
+
+# Runtime uploads - do not commit
+/public/uploads/
