@@ -88,7 +88,7 @@ export default function HeroSlider() {
   }
 
   return (
-    <section className="relative min-h-[720px] overflow-hidden bg-[#071d45]">
+    <section className="relative min-h-[620px] overflow-hidden bg-[#071d45] sm:min-h-[660px] lg:min-h-[720px]">
 
       {/* BACKGROUND IMAGES */}
 
@@ -122,7 +122,7 @@ export default function HeroSlider() {
 
       {/* CONTENT */}
 
-      <div className="relative z-10 mx-auto flex min-h-[720px] max-w-7xl items-center px-6 py-24 lg:px-8">
+      <div className="relative z-10 mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-16 sm:min-h-[660px] sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
 
         <div className="max-w-3xl">
 
@@ -135,7 +135,7 @@ export default function HeroSlider() {
 
           <h1
             key={`title-${currentSlide}`}
-            className="mt-7 text-5xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+            className="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:mt-7 md:text-6xl lg:text-7xl"
           >
             {slide.title}
 
@@ -146,23 +146,23 @@ export default function HeroSlider() {
 
           <p
             key={`description-${currentSlide}`}
-            className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 md:text-xl"
+            className="mt-5 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8 md:mt-7 md:text-xl"
           >
             {slide.description}
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:mt-10">
 
             <a
               href={slide.buttonLink}
-              className="rounded-full bg-[#b07a32] px-7 py-3.5 font-semibold text-white transition hover:bg-[#966526]"
+              className="inline-flex justify-center rounded-full bg-[#b07a32] px-6 py-3.5 text-center font-semibold text-white transition hover:bg-[#966526] sm:px-7"
             >
               {slide.buttonText}
             </a>
 
             <Link
               href="/account/register"
-              className="rounded-full border border-white/40 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/15"
+              className="inline-flex justify-center rounded-full border border-white/40 bg-white/5 px-6 py-3.5 text-center font-semibold text-white backdrop-blur transition hover:bg-white/15 sm:px-7"
             >
               Create Your Account
             </Link>
@@ -179,7 +179,7 @@ export default function HeroSlider() {
         type="button"
         onClick={previousSlide}
         aria-label="Previous slide"
-        className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-[#071d45]/50 text-2xl text-white backdrop-blur transition hover:bg-[#071d45]/80 md:left-8"
+        className="absolute left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-[#071d45]/50 text-lg text-white backdrop-blur transition hover:bg-[#071d45]/80 sm:left-4 sm:h-12 sm:w-12 sm:text-2xl md:left-8"
       >
         ←
       </button>
@@ -190,14 +190,14 @@ export default function HeroSlider() {
         type="button"
         onClick={nextSlide}
         aria-label="Next slide"
-        className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-[#071d45]/50 text-2xl text-white backdrop-blur transition hover:bg-[#071d45]/80 md:right-8"
+        className="absolute right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-[#071d45]/50 text-lg text-white backdrop-blur transition hover:bg-[#071d45]/80 sm:right-4 sm:h-12 sm:w-12 sm:text-2xl md:right-8"
       >
         →
       </button>
 
       {/* SLIDE INDICATORS */}
 
-      <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 gap-3">
+      <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2 sm:bottom-10 sm:gap-3">
 
         {slides.map((item, index) => (
           <button

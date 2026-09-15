@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ProductImage from "@/components/marketplace/ProductImage";
 
 // =======================================================
 // TYPES
@@ -630,12 +630,10 @@ export default function MarketplacePage() {
                       className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                     >
                       <div className="relative h-56 overflow-hidden bg-[#eef3fb]">
-                        <Image
+                        <ProductImage
                           src={product.imageUrl}
                           alt={product.name}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-contain"
+                          className="h-full w-full object-contain"
                         />
 
                         {product.featured && (
