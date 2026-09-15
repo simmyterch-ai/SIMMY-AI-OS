@@ -18,6 +18,7 @@ import {
   Upload,
   X,
 } from "lucide-react";
+import ProductImage from "@/components/marketplace/ProductImage";
 
 // =======================================================
 // TYPES
@@ -919,7 +920,7 @@ export default function MarketplaceAdminPage() {
                     {/* IMAGE */}
 
                     <div className="h-28 w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                      <img
+                      <ProductImage
                         src={
                           product.imageUrl
                         }
@@ -927,12 +928,6 @@ export default function MarketplaceAdminPage() {
                           product.name
                         }
                         className="h-full w-full object-cover"
-                        onError={(
-                          event
-                        ) => {
-                          event.currentTarget.style.display =
-                            "none";
-                        }}
                       />
                     </div>
 

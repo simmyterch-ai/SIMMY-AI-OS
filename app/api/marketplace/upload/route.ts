@@ -6,6 +6,7 @@ import {
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import crypto from "crypto";
+import { put } from "@vercel/blob";
 
 import { requirePermission } from "@/lib/authorization";
 
@@ -164,46 +165,33 @@ export async function POST(request: NextRequest) {
     const filename =
       `product-${crypto.randomUUID()}.${extension}`;
 
-    // ---------------------------------------------------
-    // MARKETPLACE UPLOAD DIRECTORY
-    // ---------------------------------------------------
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+    let publicPath: string;
 
-    const uploadDirectory =
-      path.join(
+    if (blobToken) {
+      const blob = await put(
+        `marketplace/${filename}`,
+        buffer,
+        {
+          access: "public",
+          contentType: file.type,
+          token: blobToken,
+        }
+      );
+
+      publicPath = blob.url;
+    } else {
+      const uploadDirectory = path.join(
         process.cwd(),
         "public",
         "uploads",
         "marketplace"
       );
 
-    await mkdir(
-      uploadDirectory,
-      {
-        recursive: true,
-      }
-    );
-
-    // ---------------------------------------------------
-    // SAVE IMAGE
-    // ---------------------------------------------------
-
-    const uploadPath =
-      path.join(
-        uploadDirectory,
-        filename
-      );
-
-    await writeFile(
-      uploadPath,
-      buffer
-    );
-
-    // ---------------------------------------------------
-    // PUBLIC IMAGE PATH
-    // ---------------------------------------------------
-
-    const publicPath =
-      `/uploads/marketplace/${filename}`;
+      await mkdir(uploadDirectory, { recursive: true });
+      await writeFile(path.join(uploadDirectory, filename), buffer);
+      publicPath = `/uploads/marketplace/${filename}`;
+    }
 
     // ---------------------------------------------------
     // RESPONSE
@@ -212,6 +200,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       path: publicPath,
+      url: publicPath,
       filename,
       message:
         "Marketplace product image uploaded successfully.",

@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 import {
   FaFacebookF,
@@ -85,7 +89,24 @@ const socialLinks = [
   },
 ];
 
+const mobileNavigation = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "#about" },
+  { label: "Our Ecosystem", href: "#ecosystem" },
+  { label: "Opportunities", href: "/opportunities" },
+  { label: "Education", href: "/education" },
+  { label: "Careers", href: "/careers" },
+  { label: "Marketplace", href: "/marketplace" },
+  { label: "Business Directory", href: "/business" },
+  { label: "AI Assistant", href: "/ai-assistant" },
+  { label: "Impact", href: "#impact" },
+  { label: "Partnerships", href: "#partners" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-white text-slate-900">
 
@@ -144,9 +165,54 @@ export default function HomePage() {
             >
               Get Started
             </Link>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#0b2a63] text-[#0b2a63] md:hidden"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
 
         </div>
+
+        {mobileMenuOpen && (
+          <div id="mobile-navigation" className="border-t border-slate-200 bg-white px-6 py-5 md:hidden">
+            <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+              {mobileNavigation.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-lg px-3 py-3 text-sm font-semibold text-[#0b2a63] transition hover:bg-slate-50 hover:text-[#b07a32]"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="mt-4 flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row">
+              <Link
+                href="/account/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center rounded-full border border-[#0b2a63] px-5 py-3 text-sm font-semibold text-[#0b2a63]"
+              >
+                Login
+              </Link>
+              <Link
+                href="/account/register"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center rounded-full bg-[#0b2a63] px-5 py-3 text-sm font-semibold text-white"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* HERO SLIDER */}
