@@ -438,7 +438,7 @@ export default function MarketplaceAdminPage() {
 
       updateField(
         "imageUrl",
-        data.path
+        data.url || data.path || ""
       );
 
       setSuccess(
@@ -488,12 +488,6 @@ export default function MarketplaceAdminPage() {
       if (!form.description.trim()) {
         throw new Error(
           "Product description is required."
-        );
-      }
-
-      if (!form.imageUrl.trim()) {
-        throw new Error(
-          "Please upload a product image or provide an image path/URL."
         );
       }
 
@@ -1318,7 +1312,7 @@ export default function MarketplaceAdminPage() {
                     </p>
 
                     <div className="relative h-56 overflow-hidden rounded-xl bg-slate-100 ring-1 ring-slate-200">
-                      <img
+                      <ProductImage
                         src={
                           form.imageUrl
                         }

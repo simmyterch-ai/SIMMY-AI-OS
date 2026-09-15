@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
@@ -107,9 +108,13 @@ export default async function OpportunitiesPage() {
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#071b49] text-lg font-black text-[#d4af37]">
-              SL
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <div>
               <div className="text-sm font-black tracking-wide text-[#071b49]">
@@ -152,7 +157,7 @@ export default async function OpportunitiesPage() {
             </Link>
 
             <Link
-              href="/login"
+              href="/account/login"
               className="rounded-full bg-[#071b49] px-5 py-2.5 text-white transition hover:bg-[#0c2a68]"
             >
               Platform Login
@@ -160,7 +165,7 @@ export default async function OpportunitiesPage() {
           </nav>
 
           <Link
-            href="/login"
+            href="/account/login"
             className="rounded-full bg-[#071b49] px-4 py-2 text-xs font-bold text-white md:hidden"
           >
             Login
@@ -458,7 +463,7 @@ export default async function OpportunitiesPage() {
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link
-              href="/login"
+              href="/account/register"
               className="rounded-full bg-[#071b49] px-7 py-3.5 text-sm font-bold text-white transition hover:bg-[#0c2a68]"
             >
               Get Started
@@ -482,9 +487,13 @@ export default async function OpportunitiesPage() {
           <div className="grid gap-10 md:grid-cols-3">
             <div>
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-black text-[#071b49]">
-                  SL
-                </div>
+                <Image
+                  src="/images/simmy-link-africa-logo.png"
+                  alt="SIMMY LINK AFRICA"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-xl bg-white object-contain"
+                />
 
                 <div className="font-black">
                   SIMMY LINK AFRICA

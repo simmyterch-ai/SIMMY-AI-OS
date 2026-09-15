@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
@@ -197,9 +198,13 @@ export default async function EducationPage() {
             href="/"
             className="flex items-center gap-3"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-900 text-sm font-black text-white">
-              SL
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <div>
               <div className="text-sm font-bold tracking-tight text-blue-950">
@@ -214,7 +219,7 @@ export default async function EducationPage() {
 
           <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
             <Link
-              href="/"
+              href="/account/register"
               className="transition hover:text-blue-800"
             >
               Home

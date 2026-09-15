@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -98,7 +98,6 @@ const mobileNavigation = [
   { label: "Careers", href: "/careers" },
   { label: "Marketplace", href: "/marketplace" },
   { label: "Business Directory", href: "/business" },
-  { label: "AI Assistant", href: "/ai-assistant" },
   { label: "Impact", href: "#impact" },
   { label: "Partnerships", href: "#partners" },
   { label: "Contact", href: "#contact" },
@@ -127,6 +126,9 @@ export default function HomePage() {
               className="h-auto w-auto max-h-14"
               priority
             />
+            <span className="hidden text-sm font-bold tracking-wide text-[#0b2a63] sm:inline">
+              SIMMY LINK AFRICA
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
@@ -536,8 +538,9 @@ export default function HomePage() {
 
               <a
                 href="mailto:hello@simmylinkafrica.com"
-                className="text-slate-600 transition hover:text-[#b07a32]"
+                className="inline-flex items-center gap-2 text-slate-600 transition hover:text-[#b07a32]"
               >
+                <Mail className="h-4 w-4" aria-hidden="true" />
                 hello@simmylinkafrica.com
               </a>
             </div>
@@ -650,8 +653,9 @@ export default function HomePage() {
 
                   <a
                     href="mailto:hello@simmylinkafrica.com"
-                    className="mt-1 block transition hover:text-[#d9a85f]"
+                    className="mt-1 inline-flex items-center gap-2 transition hover:text-[#d9a85f]"
                   >
+                    <Mail className="h-4 w-4" aria-hidden="true" />
                     hello@simmylinkafrica.com
                   </a>
                 </div>
@@ -687,6 +691,15 @@ export default function HomePage() {
                 ))}
 
               </ul>
+
+              <div className="mt-6 flex flex-col gap-3 text-sm">
+                <Link href="/terms" className="hover:text-[#d9a85f]">
+                  Terms &amp; Conditions
+                </Link>
+                <Link href="/privacy" className="hover:text-[#d9a85f]">
+                  Privacy Policy
+                </Link>
+              </div>
 
             </div>
 

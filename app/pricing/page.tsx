@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const opportunities = [
@@ -50,9 +51,13 @@ export default function PricingPage() {
       <header className="sticky top-0 z-50 border-b border-[#dbe4f2] bg-[#f4f7fc]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#123b8f] text-sm font-bold text-white">
-              SL
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-full bg-white object-contain"
+            />
 
             <div>
               <div className="text-lg font-bold tracking-[0.18em] text-[#123b8f]">
@@ -82,7 +87,7 @@ export default function PricingPage() {
           </nav>
 
           <Link
-            href="/login"
+            href="/account/login"
             className="rounded-full bg-[#123b8f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0d2f72]"
           >
             Platform Login
