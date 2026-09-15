@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const sections = [
   ["privacy-commitment", "1. Privacy Commitment"],
@@ -30,9 +31,13 @@ export default function PrivacyPolicyPage() {
             href="/"
             className="flex items-center gap-3 text-lg font-bold tracking-tight text-slate-900"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-400 font-extrabold text-slate-950">
-              S
-            </span>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <span>SIMMY LINK AFRICA</span>
           </Link>

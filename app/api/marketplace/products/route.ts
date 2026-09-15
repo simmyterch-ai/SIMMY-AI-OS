@@ -125,13 +125,12 @@ export async function POST(request: NextRequest) {
       !name ||
       !slug ||
       !category ||
-      !description ||
-      !imageUrl
+      !description
     ) {
       return NextResponse.json(
         {
           error:
-            "Name, slug, category, description, and imageUrl are required.",
+            "Name, slug, category, and description are required.",
         },
         {
           status: 400,
@@ -143,19 +142,21 @@ export async function POST(request: NextRequest) {
     const cleanSlug = String(slug).trim();
     const cleanCategory = String(category).trim();
     const cleanDescription = String(description).trim();
-    const cleanImageUrl = String(imageUrl).trim();
+    const cleanImageUrl =
+      typeof imageUrl === "string"
+        ? imageUrl.trim()
+        : "";
 
     if (
       !cleanName ||
       !cleanSlug ||
       !cleanCategory ||
-      !cleanDescription ||
-      !cleanImageUrl
+      !cleanDescription
     ) {
       return NextResponse.json(
         {
           error:
-            "Name, slug, category, description, and imageUrl cannot be empty.",
+            "Name, slug, category, and description cannot be empty.",
         },
         {
           status: 400,

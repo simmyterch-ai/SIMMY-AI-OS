@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type Career = {
@@ -76,9 +77,13 @@ export default async function CareersPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-950 text-lg font-black text-yellow-400">
-              S
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <div>
               <div className="text-sm font-black tracking-wide text-blue-950">
@@ -112,7 +117,7 @@ export default async function CareersPage() {
           </nav>
 
           <Link
-            href="/"
+            href="/account/register"
             className="rounded-full bg-blue-950 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue-900"
           >
             Get Started

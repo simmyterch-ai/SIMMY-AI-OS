@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProductImage from "@/components/marketplace/ProductImage";
@@ -93,6 +94,9 @@ export default function MarketplacePage() {
   const [products, setProducts] =
     useState<MarketplaceProduct[]>([]);
 
+  const [selectedCategory, setSelectedCategory] =
+    useState("ALL");
+
   const [loading, setLoading] =
     useState(true);
 
@@ -117,6 +121,21 @@ export default function MarketplacePage() {
 
   const [enquirySuccess, setEnquirySuccess] =
     useState("");
+
+  const visibleProducts =
+    selectedCategory === "ALL"
+      ? products
+      : products.filter(
+          (product) =>
+            product.category === selectedCategory
+        );
+
+  function exploreCategory(category: string) {
+    setSelectedCategory(category);
+    document
+      .getElementById("products")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
 
   const [enquiryError, setEnquiryError] =
     useState("");
@@ -354,9 +373,13 @@ export default function MarketplacePage() {
             href="/"
             className="flex items-center gap-3"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#08265c] text-sm font-bold text-white">
-              SL
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full bg-white object-contain"
+            />
 
             <div className="leading-none">
               <div className="text-sm font-bold tracking-[0.22em]">
@@ -400,7 +423,7 @@ export default function MarketplacePage() {
           </nav>
 
           <Link
-            href="/login"
+            href="/account/login"
             className="rounded-full bg-[#08265c] px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-[#123c82]"
           >
             Platform Login
@@ -453,7 +476,7 @@ export default function MarketplacePage() {
               </a>
 
               <a
-                href="mailto:hello@simmylinkafrica.com?subject=Marketplace%20Product%20Enquiry"
+                href="/#contact"
                 className="rounded-full border border-white/60 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#08265c]"
               >
                 Request a Product
@@ -522,8 +545,10 @@ export default function MarketplacePage() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map(
               (category) => (
-                <div
+                <button
                   key={category.number}
+                  type="button"
+                  onClick={() => exploreCategory(category.title)}
                   className="rounded-2xl border border-slate-200 bg-[#f7f9fc] p-6 transition hover:-translate-y-1 hover:border-[#b67b25]/50 hover:shadow-lg"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#08265c] text-xs font-bold text-white">
@@ -541,7 +566,7 @@ export default function MarketplacePage() {
                   <div className="mt-5 text-xs font-semibold text-[#b67b25]">
                     Explore category →
                   </div>
-                </div>
+                </button>
               )
             )}
           </div>
@@ -560,7 +585,9 @@ export default function MarketplacePage() {
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-semibold tracking-[0.28em] text-[#b67b25]">
-                FEATURED PRODUCTS
+                {selectedCategory === "ALL"
+                  ? "FEATURED PRODUCTS"
+                  : selectedCategory}
               </p>
 
               <h2 className="mt-4 text-3xl font-bold md:text-4xl">
@@ -594,11 +621,15 @@ export default function MarketplacePage() {
 
           {!loading &&
             !error &&
-            products.length === 0 && (
+            visibleProducts.length === 0 && (
               <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-12 text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#08265c] text-xl font-bold text-white">
-                  SL
-                </div>
+                <Image
+                  src="/images/simmy-link-africa-logo.png"
+                  alt="SIMMY LINK AFRICA"
+                  width={64}
+                  height={64}
+                  className="mx-auto h-16 w-16 rounded-2xl bg-white object-contain"
+                />
 
                 <h3 className="mt-5 text-xl font-bold">
                   Marketplace catalogue coming soon.
@@ -611,7 +642,7 @@ export default function MarketplacePage() {
                 </p>
 
                 <a
-                  href="mailto:hello@simmylinkafrica.com?subject=Marketplace%20Product%20Enquiry"
+                  href="/#contact"
                   className="mt-6 inline-flex rounded-full bg-[#08265c] px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-[#123c82]"
                 >
                   Request a Product
@@ -621,9 +652,9 @@ export default function MarketplacePage() {
 
           {!loading &&
             !error &&
-            products.length > 0 && (
+            visibleProducts.length > 0 && (
               <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {products.map(
+                {visibleProducts.map(
                   (product) => (
                     <article
                       key={product.id}
@@ -765,7 +796,7 @@ export default function MarketplacePage() {
           </p>
 
           <a
-            href="mailto:hello@simmylinkafrica.com?subject=Product%20Sourcing%20Request"
+            href="/#contact"
             className="mt-8 inline-flex rounded-full bg-[#c28a32] px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-[#d49a3b]"
           >
             Request Product Sourcing

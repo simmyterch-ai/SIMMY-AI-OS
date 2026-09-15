@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -37,9 +38,13 @@ export default async function BusinessDetailsPage({ params }: Props) {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-950 text-sm font-bold text-white">
-              SL
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <div>
               <div className="text-sm font-bold tracking-wide text-blue-950">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -287,9 +288,13 @@ export default function AccountPage() {
             href="/"
             className="flex items-center gap-3 text-lg font-bold text-slate-950"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-400 text-slate-950">
-              S
-            </span>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <span>SIMMY LINK AFRICA</span>
           </Link>

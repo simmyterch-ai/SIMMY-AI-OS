@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   Building2,
@@ -70,9 +71,13 @@ export default async function BusinessPage() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-950 text-sm font-bold text-white">
-              SL
-            </div>
+            <Image
+              src="/images/simmy-link-africa-logo.png"
+              alt="SIMMY LINK AFRICA"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-white object-contain"
+            />
 
             <div>
               <div className="text-sm font-bold tracking-wide text-blue-950">
@@ -87,7 +92,7 @@ export default async function BusinessPage() {
 
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <Link
-              href="/"
+              href="/account/register"
               className="text-slate-600 transition hover:text-blue-950"
             >
               Home
@@ -244,7 +249,7 @@ export default async function BusinessPage() {
             href="/"
             className="mt-7 inline-flex items-center gap-2 rounded-xl bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-900"
           >
-            Explore the Ecosystem
+            Partner With Us
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
