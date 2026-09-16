@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Solar street light</title>
+  <desc id="desc">Illustration of a solar street light on a blue background</desc>
+  <rect width="800" height="500" fill="#eef3fb"/>
+  <circle cx="650" cy="105" r="58" fill="#f6c453"/>
+  <path d="M0 390h800v110H0z" fill="#d7e2f2"/>
+  <path d="M382 390 420 135h24l-30 255z" fill="#334d76"/>
+  <path d="m425 160-145-43 8-28 145 43z" fill="#5e7da9"/>
+  <path d="m282 117-18-5 8-28 18 5z" fill="#334d76"/>
+  <path d="m276 84 102 30-8 28-102-30z" fill="#263f68"/>
+  <path d="m423 161 87 14-4 24-90-14z" fill="#334d76"/>
+  <path d="m502 175 38 22-16 21-26-19z" fill="#f8dc83"/>
+  <text x="400" y="455" fill="#274875" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">Solar street light</text>
+</svg>

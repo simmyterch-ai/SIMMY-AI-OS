@@ -918,6 +918,12 @@ export default function MarketplacePage() {
 
             <div className="px-6 py-6 md:px-8">
               <div className="rounded-2xl bg-[#eef3fb] p-4">
+                <ProductImage
+                  src={selectedProduct.imageUrl || ""}
+                  alt={selectedProduct.name}
+                  className="mb-4 h-40 w-full rounded-xl object-contain"
+                />
+
                 <p className="text-xs font-semibold uppercase tracking-wide text-[#b67b25]">
                   Selected Product
                 </p>

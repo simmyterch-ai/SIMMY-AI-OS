@@ -85,5 +85,7 @@ delete-test-*.ts
 *.backup
 *.bak
 
-# Runtime uploads - do not commit
-/public/uploads/
+# Marketplace production images are committed and served as public files.
+/public/uploads/*
+!/public/uploads/marketplace/
+!/public/uploads/marketplace/**

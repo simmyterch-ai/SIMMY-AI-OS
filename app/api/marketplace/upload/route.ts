@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
       );
 
       publicPath = blob.url;
-    } else if (process.env.NODE_ENV !== "production") {
+    } else {
       const uploadDirectory = path.join(
         process.cwd(),
         "public",
@@ -191,17 +191,6 @@ export async function POST(request: NextRequest) {
       await mkdir(uploadDirectory, { recursive: true });
       await writeFile(path.join(uploadDirectory, filename), buffer);
       publicPath = `/uploads/marketplace/${filename}`;
-    } else {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "Marketplace image storage is not configured. Set BLOB_READ_WRITE_TOKEN in the production environment.",
-        },
-        {
-          status: 503,
-        }
-      );
     }
 
     // ---------------------------------------------------
