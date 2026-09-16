@@ -17,6 +17,20 @@ import {
   requirePermission,
 } from "@/lib/authorization";
 
+function normalizeMarketplaceImageUrl(
+  imageUrl: string
+): string {
+  if (
+    imageUrl.startsWith("/") ||
+    imageUrl.includes("://") ||
+    imageUrl.startsWith("data:")
+  ) {
+    return imageUrl;
+  }
+
+  return `/uploads/marketplace/${imageUrl}`;
+}
+
 // =======================================================
 // HELPERS
 // =======================================================
@@ -494,6 +508,12 @@ export async function PUT(
         data.imageUrl.trim();
 
       updateData.imageUrl = value || null;
+      if (updateData.imageUrl) {
+        updateData.imageUrl =
+          normalizeMarketplaceImageUrl(
+            updateData.imageUrl
+          );
+      }
     } else if (data.imageUrl === null) {
       updateData.imageUrl = null;
     }

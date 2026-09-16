@@ -2,6 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requirePermission } from "@/lib/authorization";
 
+function normalizeMarketplaceImageUrl(
+  imageUrl: string | null
+): string | null {
+  if (!imageUrl) {
+    return null;
+  }
+
+  if (
+    imageUrl.startsWith("/") ||
+    imageUrl.includes("://") ||
+    imageUrl.startsWith("data:")
+  ) {
+    return imageUrl;
+  }
+
+  return `/uploads/marketplace/${imageUrl}`;
+}
+
 // =======================================================
 // GET — PUBLIC MARKETPLACE PRODUCTS
 // =======================================================
@@ -143,9 +161,11 @@ export async function POST(request: NextRequest) {
     const cleanCategory = String(category).trim();
     const cleanDescription = String(description).trim();
     const cleanImageUrl =
-      typeof imageUrl === "string"
-        ? imageUrl.trim()
-        : null;
+      normalizeMarketplaceImageUrl(
+        typeof imageUrl === "string"
+          ? imageUrl.trim()
+          : null
+      );
 
     if (
       !cleanName ||

@@ -16,7 +16,13 @@ export default function ProductImage({
   alt,
   className,
 }: ProductImageProps) {
-  const [imageSrc, setImageSrc] = useState(src || FALLBACK_IMAGE);
+  const normalizedSrc =
+    src && !src.startsWith("/") && !src.includes("://") && !src.startsWith("data:")
+      ? `/uploads/marketplace/${src}`
+      : src;
+  const [imageSrc, setImageSrc] = useState(
+    normalizedSrc || FALLBACK_IMAGE
+  );
 
   return (
     <img
