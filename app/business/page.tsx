@@ -92,7 +92,7 @@ export default async function BusinessPage() {
 
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <Link
-              href="/account/register"
+              href="/"
               className="text-slate-600 transition hover:text-blue-950"
             >
               Home
@@ -126,6 +126,13 @@ export default async function BusinessPage() {
               Marketplace
             </Link>
           </nav>
+
+          <Link
+            href="/account/register"
+            className="rounded-full bg-blue-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-900"
+          >
+            Get Started
+          </Link>
         </div>
       </header>
 
@@ -237,21 +244,37 @@ export default async function BusinessPage() {
       <section className="bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-16 text-center lg:px-8">
           <h2 className="text-3xl font-bold text-blue-950">
-            Grow Your Business With SIMMY LINK AFRICA
+          Grow Your Business With SIMMY LINK AFRICA
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-            Connect your business to customers, partners, opportunities and
-            markets across Africa and beyond.
+          Connect your business to customers, partners, opportunities and
+          markets across Africa and beyond.
           </p>
 
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
           <Link
-            href="/"
+            href="/#contact"
             className="mt-7 inline-flex items-center gap-2 rounded-xl bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-900"
           >
             Partner With Us
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 rounded-xl border border-blue-950 px-6 py-3 text-sm font-semibold text-blue-950 transition hover:bg-blue-950 hover:text-white"
+          >
+            Request Assistance
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 rounded-xl border border-blue-950 px-6 py-3 text-sm font-semibold text-blue-950 transition hover:bg-blue-950 hover:text-white"
+          >
+            Business Growth Consultation
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          </div>
         </div>
       </section>
 

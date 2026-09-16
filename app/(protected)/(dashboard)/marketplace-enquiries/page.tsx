@@ -24,7 +24,7 @@ type MarketplaceEnquiry = {
     name: string;
     slug: string;
     category: string;
-    imageUrl: string;
+    imageUrl: string | null;
   } | null;
 };
 

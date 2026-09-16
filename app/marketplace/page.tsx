@@ -15,7 +15,7 @@ type MarketplaceProduct = {
   slug: string;
   category: string;
   description: string;
-  imageUrl: string;
+  imageUrl: string | null;
   status: string;
   featured: boolean;
   createdAt: string;
@@ -423,10 +423,10 @@ export default function MarketplacePage() {
           </nav>
 
           <Link
-            href="/account/login"
+            href="/account/register"
             className="rounded-full bg-[#08265c] px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-[#123c82]"
           >
-            Platform Login
+            Get Started
           </Link>
         </div>
       </header>
@@ -601,6 +601,18 @@ export default function MarketplacePage() {
                 relevant to African markets.
               </p>
             </div>
+
+            <button
+              type="button"
+              onClick={() => exploreCategory("ALL")}
+              className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${
+                selectedCategory === "ALL"
+                  ? "border-[#08265c] bg-[#08265c] text-white"
+                  : "border-slate-300 text-[#08265c] hover:border-[#08265c]"
+              }`}
+            >
+              All Categories
+            </button>
           </div>
 
           {loading && (
@@ -662,7 +674,7 @@ export default function MarketplacePage() {
                     >
                       <div className="relative h-56 overflow-hidden bg-[#eef3fb]">
                         <ProductImage
-                          src={product.imageUrl}
+                          src={product.imageUrl || ""}
                           alt={product.name}
                           className="h-full w-full object-contain"
                         />

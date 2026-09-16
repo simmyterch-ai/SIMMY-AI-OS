@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     const cleanImageUrl =
       typeof imageUrl === "string"
         ? imageUrl.trim()
-        : "";
+        : null;
 
     if (
       !cleanName ||
@@ -190,7 +190,7 @@ export async function POST(request: NextRequest) {
           slug: cleanSlug,
           category: cleanCategory,
           description: cleanDescription,
-          imageUrl: cleanImageUrl,
+          imageUrl: cleanImageUrl || null,
           status:
             status === "PUBLISHED"
               ? "PUBLISHED"
