@@ -30,7 +30,7 @@ type MarketplaceProduct = {
   slug: string;
   category: string;
   description: string;
-  imageUrl: string;
+  imageUrl: string | null;
   status: string;
   featured: boolean;
   createdAt: string;
@@ -227,7 +227,7 @@ export default function MarketplaceAdminPage() {
       slug: product.slug,
       category: product.category,
       description: product.description,
-      imageUrl: product.imageUrl,
+      imageUrl: product.imageUrl || "",
       status:
         product.status ===
         "PUBLISHED"
@@ -430,15 +430,22 @@ export default function MarketplaceAdminPage() {
         );
       }
 
-      if (!data?.path) {
+      const imageUrl =
+        typeof data?.url === "string"
+          ? data.url
+          : typeof data?.path === "string"
+            ? data.path
+            : "";
+
+      if (!imageUrl) {
         throw new Error(
-          "Image uploaded, but no image path was returned."
+          "Image uploaded, but no usable public image URL was returned."
         );
       }
 
       updateField(
         "imageUrl",
-        data.url || data.path || ""
+        imageUrl
       );
 
       setSuccess(
@@ -916,7 +923,7 @@ export default function MarketplaceAdminPage() {
                     <div className="h-28 w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
                       <ProductImage
                         src={
-                          product.imageUrl
+                          product.imageUrl || ""
                         }
                         alt={
                           product.name

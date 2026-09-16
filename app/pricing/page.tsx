@@ -87,10 +87,10 @@ export default function PricingPage() {
           </nav>
 
           <Link
-            href="/account/login"
+            href="/account/register"
             className="rounded-full bg-[#123b8f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0d2f72]"
           >
-            Platform Login
+            Get Started
           </Link>
         </div>
       </header>

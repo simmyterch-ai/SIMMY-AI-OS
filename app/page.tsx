@@ -97,6 +97,7 @@ const mobileNavigation = [
   { label: "Education", href: "/education" },
   { label: "Careers", href: "/careers" },
   { label: "Marketplace", href: "/marketplace" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Business Directory", href: "/business" },
   { label: "Impact", href: "#impact" },
   { label: "Partnerships", href: "#partners" },
@@ -123,10 +124,10 @@ export default function HomePage() {
               alt="SIMMY LINK AFRICA"
               width={220}
               height={90}
-              className="h-auto w-auto max-h-14"
+              className="h-auto w-auto max-h-10 sm:max-h-14"
               priority
             />
-            <span className="hidden text-sm font-bold tracking-wide text-[#0b2a63] sm:inline">
+            <span className="max-w-[9rem] truncate text-xs font-bold tracking-wide text-[#0b2a63] sm:max-w-none sm:text-sm">
               SIMMY LINK AFRICA
             </span>
           </Link>
@@ -146,6 +147,10 @@ export default function HomePage() {
 
             <a href="#partners" className="hover:text-[#b07a32]">
               Partnerships
+            </a>
+
+            <a href="/pricing" className="hover:text-[#b07a32]">
+              Pricing
             </a>
 
             <a href="#contact" className="hover:text-[#b07a32]">

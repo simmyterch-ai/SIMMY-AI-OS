@@ -173,7 +173,7 @@ model MarketplaceProduct {
   slug        String @unique
   category    String
   description String
-  imageUrl    String
+  imageUrl    String?
 
   // Base commercial price. All marketplace prices are managed in USD.
   priceUsd Decimal @default(0) @db.Decimal(12, 2)

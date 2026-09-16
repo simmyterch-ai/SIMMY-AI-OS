@@ -145,7 +145,7 @@ async function requirePlatformUser(
 // =======================================================
 
 async function deleteLocalMarketplaceImage(
-  imageUrl: string
+  imageUrl: unknown
 ): Promise<void> {
   /*
    * Only delete images that belong to:

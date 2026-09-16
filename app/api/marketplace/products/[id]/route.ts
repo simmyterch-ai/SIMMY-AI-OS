@@ -429,7 +429,7 @@ export async function PUT(
       slug?: string;
       category?: string;
       description?: string;
-      imageUrl?: string;
+      imageUrl?: string | null;
       status?: string;
       featured?: boolean;
     } = {};
@@ -493,10 +493,9 @@ export async function PUT(
       const value =
         data.imageUrl.trim();
 
-      if (value) {
-        updateData.imageUrl =
-          value;
-      }
+      updateData.imageUrl = value || null;
+    } else if (data.imageUrl === null) {
+      updateData.imageUrl = null;
     }
 
     if (

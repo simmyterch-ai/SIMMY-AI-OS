@@ -157,18 +157,18 @@ export default async function OpportunitiesPage() {
             </Link>
 
             <Link
-              href="/account/login"
+              href="/account/register"
               className="rounded-full bg-[#071b49] px-5 py-2.5 text-white transition hover:bg-[#0c2a68]"
             >
-              Platform Login
+              Get Started
             </Link>
           </nav>
 
           <Link
-            href="/account/login"
+            href="/account/register"
             className="rounded-full bg-[#071b49] px-4 py-2 text-xs font-bold text-white md:hidden"
           >
-            Login
+            Get Started
           </Link>
         </div>
       </header>
