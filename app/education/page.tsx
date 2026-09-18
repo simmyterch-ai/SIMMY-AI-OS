@@ -1,6 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type Provider = {
   id: number;
@@ -70,6 +71,21 @@ type Course = {
   };
 };
 
+type ProvidersResponse = {
+  providers?: Provider[];
+  total?: number;
+};
+
+type ProgramsResponse = {
+  programs?: Program[];
+  total?: number;
+};
+
+type CoursesResponse = {
+  courses?: Course[];
+  total?: number;
+};
+
 function verificationLabel(status: string) {
   switch (status) {
     case "VERIFIED":
@@ -96,92 +112,62 @@ function verificationClass(status: string) {
   }
 }
 
+function getApiBaseUrl() {
+  return (
+    process.env.NEXT_PUBLIC_APP_URL ||
+    "https://www.simmylinkafrica.com"
+  ).replace(/\/$/, "");
+}
+
 async function getEducationData() {
-  const [providers, programs, courses] = await Promise.all([
-    prisma.educationProvider.findMany({
-      where: {
-        status: "PUBLISHED",
-      },
-      orderBy: [
-        {
-          featured: "desc",
-        },
-        {
-          createdAt: "desc",
-        },
-      ],
-      take: 6,
-      include: {
-        _count: {
-          select: {
-            programs: true,
-            trainingCourses: true,
-          },
-        },
-      },
-    }),
+  const baseUrl = getApiBaseUrl();
 
-    prisma.educationProgram.findMany({
-      where: {
-        status: "PUBLISHED",
-      },
-      orderBy: [
-        {
-          featured: "desc",
-        },
-        {
-          createdAt: "desc",
-        },
-      ],
-      take: 6,
-      include: {
-        provider: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-            type: true,
-            country: true,
-            city: true,
-            verificationStatus: true,
-          },
-        },
-      },
-    }),
+  const [providersResponse, programsResponse, coursesResponse] =
+    await Promise.all([
+      fetch(`${baseUrl}/api/education/providers`, {
+        cache: "no-store",
+      }),
 
-    prisma.trainingCourse.findMany({
-      where: {
-        status: "PUBLISHED",
-      },
-      orderBy: [
-        {
-          featured: "desc",
-        },
-        {
-          createdAt: "desc",
-        },
-      ],
-      take: 6,
-      include: {
-        provider: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-            type: true,
-            country: true,
-            city: true,
-            verificationStatus: true,
-          },
-        },
-      },
-    }),
-  ]);
+      fetch(`${baseUrl}/api/education/programs`, {
+        cache: "no-store",
+      }),
+
+      fetch(`${baseUrl}/api/education/courses`, {
+        cache: "no-store",
+      }),
+    ]);
+
+  if (
+    !providersResponse.ok ||
+    !programsResponse.ok ||
+    !coursesResponse.ok
+  ) {
+    throw new Error("Failed to load education data");
+  }
+
+  const [providersData, programsData, coursesData] =
+    (await Promise.all([
+      providersResponse.json(),
+      programsResponse.json(),
+      coursesResponse.json(),
+    ])) as [
+      ProvidersResponse,
+      ProgramsResponse,
+      CoursesResponse
+    ];
 
   return {
-    providers,
-    programs,
-    courses,
+    providers: Array.isArray(providersData.providers)
+      ? providersData.providers
+      : [],
+
+    programs: Array.isArray(programsData.programs)
+      ? programsData.programs
+      : [],
+
+    courses: Array.isArray(coursesData.courses)
+      ? coursesData.courses
+      : [],
   };
 }
 
@@ -198,13 +184,9 @@ export default async function EducationPage() {
             href="/"
             className="flex items-center gap-3"
           >
-            <Image
-              src="/images/simmy-link-africa-logo.png"
-              alt="SIMMY LINK AFRICA"
-              width={40}
-              height={40}
-              className="h-10 w-10 rounded-xl bg-white object-contain"
-            />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-900 text-sm font-black text-white">
+              SL
+            </div>
 
             <div>
               <div className="text-sm font-bold tracking-tight text-blue-950">
@@ -248,7 +230,7 @@ export default async function EducationPage() {
           </nav>
 
           <Link
-            href="/account/register"
+            href="/"
             className="rounded-xl bg-blue-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800"
           >
             Get Started
@@ -324,6 +306,7 @@ export default async function EducationPage() {
                 <div className="text-3xl font-bold text-blue-900">
                   {providers.length}
                 </div>
+
                 <div className="mt-1 text-sm text-slate-500">
                   Featured providers
                 </div>
@@ -333,6 +316,7 @@ export default async function EducationPage() {
                 <div className="text-3xl font-bold text-blue-900">
                   {programs.length}
                 </div>
+
                 <div className="mt-1 text-sm text-slate-500">
                   Featured programs
                 </div>
@@ -342,6 +326,7 @@ export default async function EducationPage() {
                 <div className="text-3xl font-bold text-blue-900">
                   {courses.length}
                 </div>
+
                 <div className="mt-1 text-sm text-slate-500">
                   Featured courses
                 </div>
@@ -351,6 +336,7 @@ export default async function EducationPage() {
                 <div className="text-3xl font-bold text-blue-900">
                   Global
                 </div>
+
                 <div className="mt-1 text-sm text-slate-500">
                   Learning ecosystem
                 </div>
@@ -439,7 +425,7 @@ export default async function EducationPage() {
                   </span>
 
                   <span>
-                    {provider._count.programs} programs
+                    {provider._count?.programs ?? 0} programs
                   </span>
                 </div>
               </article>
