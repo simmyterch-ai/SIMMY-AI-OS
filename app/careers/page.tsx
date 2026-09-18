@@ -26,14 +26,20 @@ type CareersResponse = {
   total: number;
 };
 
+function getApiBaseUrl() {
+  return (
+    process.env.NEXT_PUBLIC_APP_URL ||
+    "https://www.simmylinkafrica.com"
+  ).replace(/\/$/, "");
+}
+
 async function getCareers(): Promise<CareersResponse> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"}/api/careers`,
-      {
-        cache: "no-store",
-      }
-    );
+    const baseUrl = getApiBaseUrl();
+
+    const response = await fetch(`${baseUrl}/api/careers`, {
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       return { careers: [], total: 0 };
@@ -99,19 +105,32 @@ export default async function CareersPage() {
             <Link href="/" className="text-slate-600 hover:text-blue-950">
               Home
             </Link>
+
             <Link
               href="/#ecosystem"
               className="text-slate-600 hover:text-blue-950"
             >
               Our Ecosystem
             </Link>
-            <Link href="/marketplace" className="text-slate-600 hover:text-blue-950">
+
+            <Link
+              href="/marketplace"
+              className="text-slate-600 hover:text-blue-950"
+            >
               Marketplace
             </Link>
-            <Link href="/education" className="text-slate-600 hover:text-blue-950">
+
+            <Link
+              href="/education"
+              className="text-slate-600 hover:text-blue-950"
+            >
               Education
             </Link>
-            <Link href="/opportunities" className="text-slate-600 hover:text-blue-950">
+
+            <Link
+              href="/opportunities"
+              className="text-slate-600 hover:text-blue-950"
+            >
               Opportunities
             </Link>
           </nav>
@@ -172,9 +191,8 @@ export default async function CareersPage() {
       <section className="border-b border-slate-200 bg-slate-50">
         <div className="mx-auto grid max-w-7xl gap-6 px-6 py-7 sm:grid-cols-3 lg:px-8">
           <div>
-            <p className="text-sm font-black text-blue-950">
-              {total}
-            </p>
+            <p className="text-sm font-black text-blue-950">{total}</p>
+
             <p className="mt-1 text-sm text-slate-500">
               Published career opportunities
             </p>
@@ -184,6 +202,7 @@ export default async function CareersPage() {
             <p className="text-sm font-black text-blue-950">
               Verified & Listed
             </p>
+
             <p className="mt-1 text-sm text-slate-500">
               Source and verification information where available
             </p>
@@ -193,6 +212,7 @@ export default async function CareersPage() {
             <p className="text-sm font-black text-blue-950">
               Africa + Global
             </p>
+
             <p className="mt-1 text-sm text-slate-500">
               Opportunities can come from multiple countries and markets
             </p>
@@ -287,6 +307,7 @@ export default async function CareersPage() {
             <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow-600">
               Featured
             </p>
+
             <h2 className="mt-2 text-3xl font-black text-blue-950">
               Featured Career Opportunities
             </h2>
@@ -376,9 +397,11 @@ export default async function CareersPage() {
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
             <div className="text-2xl">✓</div>
+
             <h3 className="mt-4 text-lg font-black text-blue-950">
               Transparency
             </h3>
+
             <p className="mt-3 text-sm leading-6 text-slate-600">
               Career listings can include source and verification information
               to help users understand where an opportunity comes from.
@@ -387,9 +410,11 @@ export default async function CareersPage() {
 
           <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
             <div className="text-2xl">🌍</div>
+
             <h3 className="mt-4 text-lg font-black text-blue-950">
               Global Access
             </h3>
+
             <p className="mt-3 text-sm leading-6 text-slate-600">
               Discover employment opportunities across different countries,
               industries and working arrangements.
@@ -398,9 +423,11 @@ export default async function CareersPage() {
 
           <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
             <div className="text-2xl">✦</div>
+
             <h3 className="mt-4 text-lg font-black text-blue-950">
               Atlas Intelligence
             </h3>
+
             <p className="mt-3 text-sm leading-6 text-slate-600">
               Future Atlas capabilities can help users discover, organize and
               understand opportunities more intelligently.
@@ -448,6 +475,7 @@ export default async function CareersPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <div>
             <p className="font-black text-blue-950">SIMMY LINK AFRICA</p>
+
             <p className="mt-1">
               Connecting Africa to Opportunities, Knowledge, Business and the
               World.
@@ -456,6 +484,7 @@ export default async function CareersPage() {
 
           <div className="text-left sm:text-right">
             <p>Careers & Employment</p>
+
             <p className="mt-1 text-xs">
               Powered by SIMMY-LINK CONCEPT LTD.
             </p>
@@ -543,6 +572,7 @@ function CareerCard({
         <div className="flex items-center justify-between gap-4 text-xs">
           <div>
             <p className="font-semibold text-slate-400">Deadline</p>
+
             <p className="mt-1 font-bold text-slate-700">
               {formatDeadline(career.deadline)}
             </p>
@@ -551,6 +581,7 @@ function CareerCard({
           {career.salary && (
             <div className="text-right">
               <p className="font-semibold text-slate-400">Salary</p>
+
               <p className="mt-1 font-bold text-slate-700">
                 {career.salary}
               </p>
